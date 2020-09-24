@@ -39,17 +39,29 @@ const App = () => {
 
   return (
     <div className="ui container" style={{paddingTop: '10px'}}>
-      {/* <Accordian items={items} /> */}
-      {/* <Search /> */}
-      {/* <Dropdown
-        label={'Select a Color'}
-        selected={selected}
-        onSelectedChange={setSelected}
-        options={options}
-      /> */}
-      <Translate />
+      {showAccordion()}
+      {showSearch()}
+      {showTranslate()}
     </div>
   );
+};
+
+const showAccordion = () => {
+  if (window.location.pathname === '/') {
+    return <Accordian items={items} />;
+  }
+}
+
+const showSearch = () => {
+  if (window.location.pathname === "/search") {
+    return <Search />;
+  }
+};
+
+const showTranslate = () => {
+  if (window.location.pathname === "/translate") {
+    return <Translate />;
+  }
 };
 
 export default App;
