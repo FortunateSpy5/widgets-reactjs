@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Accordian from './components/Accordion';
-import Dropdown from './components/Dropdown';
 import Search from "./components/Search";
 import Translate from './components/Translate';
+import Route from "./components/Route";
+import Header from "./components/Header";
 
 const items = [
   {
@@ -19,49 +20,21 @@ const items = [
   }
 ];
 
-const options = [
-  {
-    label: "The Color Red",
-    value: "red",
-  },
-  {
-    label: "The Color Green",
-    value: "green",
-  },
-  {
-    label: "A Shade of Blue",
-    value: "blue",
-  }
-];
-
 const App = () => {
-  const [selected, setSelected] = useState(options[0]);
-
   return (
-    <div className="ui container" style={{paddingTop: '10px'}}>
-      {showAccordion()}
-      {showSearch()}
-      {showTranslate()}
+    <div className="ui container" style={{ paddingTop: "10px" }}>
+      <Header />
+      <Route path="/">
+        <Accordian items={items} />
+      </Route>
+      <Route path="/search">
+        <Search />
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
-};
-
-const showAccordion = () => {
-  if (window.location.pathname === '/') {
-    return <Accordian items={items} />;
-  }
-}
-
-const showSearch = () => {
-  if (window.location.pathname === "/search") {
-    return <Search />;
-  }
-};
-
-const showTranslate = () => {
-  if (window.location.pathname === "/translate") {
-    return <Translate />;
-  }
 };
 
 export default App;
